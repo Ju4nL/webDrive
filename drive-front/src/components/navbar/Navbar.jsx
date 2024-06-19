@@ -7,8 +7,8 @@ const NavBar = () => {
     const navItemsRef = useRef([]);
     const sectionsRef = useRef([]);
 
-    const location = useLocation(); // Hook para obtener la ubicación actual
-    const currentPath = location.pathname; // Ruta actual
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     useEffect(() => {
         const callback = (entries) => {
@@ -59,8 +59,14 @@ const NavBar = () => {
             title: 'Carreras',
             label: 'carreras',
             url: '/racing',
+            activePaths: ['/racing', '/races']
         },
     ];
+
+    const isActive = (url, activePaths) => {
+        if (currentPath === url) return true;
+        return activePaths.some(path => currentPath.startsWith(path));
+    };
 
     return (
         <header className="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2">
@@ -70,7 +76,7 @@ const NavBar = () => {
                         key={link.label}
                         ref={(el) => navItemsRef.current.push(el)}
                         className={`relative block px-2 py-2 transition hover:text-green-500 dark:hover:text-green-400 ${
-                            currentPath === link.url ? 'font-bold border-b-2 border-green-600 text-green-500' : ''
+                            isActive(link.url, link.activePaths || []) ? 'font-bold border-b-2 border-green-600 text-green-500' : ''
                         }`}
                         aria-label={link.label}
                         to={link.url}
