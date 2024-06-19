@@ -233,7 +233,7 @@ const Destinations = () => {
                     </button>
                 </div>
 
-                <div className='flex gap-4 mt-4 md:mt-0'>
+                <div className='flex gap-4 mt-4 md:mt-0 '>
                     {isEditing ? (
                         <button
                             type="button"

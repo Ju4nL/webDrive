@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import CardDestinations from './CardDestinations';
-import CardContainer from './../../components/cardContainer/CardContainer';
+import CardContainer from '../../components/CardContainer';
 import GpsIcon from '../../components/icons/Gps';
 import ListboxSelect from '../../components/select/ListboxSelect';
 import { FaTaxi } from 'react-icons/fa';
+import Avatar from '../../components/Avatar';
 
 // Lista de conductores con id, img y nombre aleatorio
 const drivers = [
@@ -34,14 +35,14 @@ const RaceDetails = () => {
     };
 
     const renderDriverOption = (driver) => (
-        <span className="flex items-center">
-            {driver.img && <img src={driver.img} alt={driver.name} className="h-6 w-6 rounded-full mr-2" />}
+        <span className="flex items-center gap-2">
+            {driver.img && <Avatar src={driver.img} alt={driver.name} />}
             {driver.name}
         </span>
     );
 
     return (
-        <CardContainer Icon={GpsIcon} title="Destinos" subtitle="Carrera: Jhon">
+        <CardContainer Icon={GpsIcon} title="Destinos" subtitle="Carrera: Jhon"  showBackButton={true}>
             <div className='flex items-center flex-col  md:flex-row justify-center w-full mt-4 gap-4'>
                 <ListboxSelect
                     label="Seleccionar conductor"
@@ -70,7 +71,7 @@ const RaceDetails = () => {
                     type="text"
                     value={newDestination}
                     onChange={(e) => setNewDestination(e.target.value)}
-                    className="w-full py-2 px-4 text-sm font-medium rounded-lg border border-gray-300"
+                    className="w-full py-2 px-4 text-sm font-medium rounded-lg border border-gray-300 "
                     placeholder="Nuevo destino"
                 />
                 <button

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHourglassHalf, FaSpinner, FaClock, FaCheckCircle } from 'react-icons/fa';
+import { IoIosArrowForward } from "react-icons/io";
 
 const statusIcons = {
   'pendiente': <FaHourglassHalf className="text-yellow-500" />,
@@ -11,8 +12,7 @@ const statusIcons = {
   'completada': <FaCheckCircle className="text-green-500" />
 };
 
-const CardRacing = ({ to, status, title, createTime, km }) => {
-  // Seleccionar el icono basado en el estado proporcionado
+const CardRacing = ({ to, status, title, createTime, km }) => { 
   const icon = statusIcons[status] || null;
 
   return (
@@ -29,22 +29,11 @@ const CardRacing = ({ to, status, title, createTime, km }) => {
               <p class="text-xs leading-tight text-white">{km} km</p>
             </div> 
           </div>
+        </div> 
+        <div>
+          <span className='text-xs'>Sin Conductor</span>
         </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 shrink-0"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          strokeWidth="2"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M9 6l6 6l-6 6"></path>
-        </svg>
+        <IoIosArrowForward />
       </div>
     </Link>
   );

@@ -7,8 +7,8 @@ import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 
 import CardRacing from './CardRacing'
-import CardContainer from './../../components/cardContainer/CardContainer';
-import SearchBar from '../../components/search/SearchBar';
+import CardContainer from '../../components/CardContainer';
+import SearchBar from '../../components/SearchBar';
 import ListboxSelect from '../../components/select/ListboxSelect';
 
 import RoadIcon from '../../components/icons/Road';

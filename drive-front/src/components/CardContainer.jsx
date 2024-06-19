@@ -1,7 +1,10 @@
 import React from 'react';
-// import RoadIcon from '../../components/icons/Road';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
-const CardContainer = ({ Icon, title, subtitle, children }) => {
+const CardContainer = ({ Icon, title, subtitle, children, showBackButton = false }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="max-w-3xl md:mx-auto mt-14 mx-4">
             <div aria-label="card" className="p-2 md:p-8 rounded-3xl shadow-lg w-full">
@@ -15,6 +18,14 @@ const CardContainer = ({ Icon, title, subtitle, children }) => {
                             {subtitle}
                         </p>
                     </div>
+                    {showBackButton && (
+                        <button
+                            className="hover:text-green-500"
+                            onClick={() => navigate(-1)}
+                        >
+                            <IoMdArrowRoundBack className="size-6" />
+                        </button>
+                    )}
                 </div>
                 {children}
             </div>
