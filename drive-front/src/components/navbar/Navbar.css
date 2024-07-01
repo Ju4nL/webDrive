@@ -1,3 +1,4 @@
+/* Navbar.css */
 nav {
     animation: nav-shadow 1s linear both;
 }
@@ -6,6 +7,18 @@ nav {
     to {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
         background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+    }
+}
+
+.dark nav {
+    animation: dark-nav-shadow 1s linear both;
+}
+
+@keyframes dark-nav-shadow {
+    to {
+        box-shadow: 0 4px 6px rgba(8, 10, 30, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3);
+        background-color: rgba(13, 17, 37, 0.5);
         backdrop-filter: blur(5px);
     }
 }

@@ -12,7 +12,7 @@ const SearchBar = ({
         type="search"
         name="search"
         placeholder={placeholder}
-        className="bg-white h-10 px-5 pr-10 rounded-[15px] text-sm focus:outline-none w-full shadow-md border-white focus:border-green-400 focus:ring-0 focus:ring-green-400 "
+        className="bg-white h-10 px-5 pr-10 rounded-[15px] text-sm focus:outline-none w-full shadow-md border-white focus:border-green-400 focus:ring-0 focus:ring-green-400  dark:bg-gray-900 dark:border-gray-900 dark:focus:border-green-300"
         value={searchTerm}
         onChange={handleSearchChange}
       />

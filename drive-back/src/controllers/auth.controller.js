@@ -29,17 +29,17 @@ export const register = async (req, res) => {
         console.error("Error creating user:", error);
         return res.status(500).json(error.message);
     } finally {
-        client.release();
-        await pool.end();
+        client.release(); 
     }
-
-
 };
 
 export const login = async (req, res) => {
     const client = await pool.connect();
     try {
-        const q = "SELECT * FROM users WHERE username=$1";
+        const q = ` SELECT u.*, r.tipo as role 
+                    FROM users AS u
+                    LEFT JOIN roles AS r ON u.roleid = r.roleid
+                    WHERE u.username=$1`;
         const { rows } = await client.query(q, [req.body.username]);
 
         if (rows.length === 0) {
@@ -54,9 +54,9 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "Wrong password or username" });
         }
 
-        // Generate JWT token
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || "secretkey", {
-            expiresIn: '24h'  
+        // Generate JWT token including role with 30 days expiration
+        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET || "secretkey", {
+            expiresIn: '30d'
         });
 
         // Exclude password from the response
@@ -65,17 +65,17 @@ export const login = async (req, res) => {
         // Set the token in the cookie
         res.cookie("accessToken", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',  
-            sameSite: 'Strict' 
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Strict',
+            maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days in milliseconds
         }).status(200).json(others);
 
     } catch (error) {
         console.error("Error login:", error);
-        res.status(500).json("raise" );
+        res.status(500).json("Error during login");
     } finally {
         client.release();
     }
-
 }
 
 export const logout = (req, res) => {

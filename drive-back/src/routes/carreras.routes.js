@@ -1,8 +1,9 @@
 import express from "express" 
-import {   } from "../controllers/carrera.controller.js";
+import {  getRides,updateRideDriver } from "../controllers/carrera.controller.js";
 
 const router = express.Router(); 
 
-router.get("",);
+router.get("/",getRides);
+router.put('/update-driver', updateRideDriver);
 
 export default router;

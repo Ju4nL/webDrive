@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
-import ButtonPagination from './ButtonPagination';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useCallback } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import ButtonPagination from "./ButtonPagination";
 
-function PaginationNav1({
+function Pagination({
   gotoPage,
   canPreviousPage,
   canNextPage,
@@ -69,4 +69,4 @@ function PaginationNav1({
   );
 }
 
-export default PaginationNav1;
+export default Pagination;

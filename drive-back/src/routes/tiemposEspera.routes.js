@@ -1,8 +1,8 @@
 import express from "express" 
-import {  } from "../controllers/tiemposEspera.controller.js";
+import { createWaitTime } from "../controllers/tiemposEspera.controller.js";
 
 const router = express.Router(); 
 
-router.get("",);
+router.post('/', createWaitTime);
 
 export default router;
